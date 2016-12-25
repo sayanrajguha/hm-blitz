@@ -1,0 +1,21 @@
+{
+  "name": "foodApp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An meal ordering app primarily for corporate workers",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "author": "Sayanraj Guha",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "debug": "~2.2.0",
+    "ejs": "^2.4.2",
+    "express": "~4.13.1",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.19",
+    "multiparty": "^4.1.2",
+    "serve-favicon": "~2.3.0",
+    "handbrake-js": "^2.1.0"
+  }
+}

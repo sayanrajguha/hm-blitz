@@ -29,7 +29,10 @@
 .upload {
     padding: 20px;
 }
-
+.rightBtn {
+    text-align: right; 
+    margin-top: 20px;
+}
 
 /* video blog css */
 /* image thumbnail */
@@ -52,8 +55,8 @@
 * have a image and a text title.
 */
 .featured-article {
-	/*width: 482px;*/
-	/*height: 350px;*/
+	/*width: 640px;*/
+	height: 480px;
 	position: relative;
 	margin-bottom: 1em;
 }

@@ -1,17 +1,21 @@
 var express = require('express');
+var path = require('path');
 // var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./config/config');
 var fs = require('fs');
 var hbjs = require("handbrake-js");
+var request = require('request');
+
 var app = express();
 var videoServer = require('./videoserver.js');
+var api = require('./api/video-api.js');
+var dataDir = config.dataDirectory,
+viewDir = path.join(__dirname, 'views');
 
-var dataDir = 'data',
-viewDir = 'views',
-user = 'HM0003576'; //logic to extract user name/number
-app.set('userDirectory',dataDir+'/'+user);
+var user = 'rishi.khanna'; //logic to extract user name/number
+
 // view engine setup
 // app.set('views', publicDir);
 // app.engine('html', require('ejs').renderFile);
@@ -48,19 +52,19 @@ app.post('/upload', function(req,res) {
   form.parse(req, function(err,fields,files) {
     if(err) throw err;
     console.log('Parsing...');
-    // console.dir(fields);
     console.dir(files);
     var vid = files.video[0];
     
     fs.readFile(vid.path, function(err,data) {
           if(err) throw err;
           console.log('Read file...');
-          var directory = dataDir + '/' + user;
+          var directory = config.dataDirectory + '/' + user;
           if (!fs.existsSync(directory)){
             fs.mkdirSync(directory);
           }
+          
           var path = directory +'/movie.'+vid.originalFilename.substr(vid.originalFilename.indexOf('.')+1);
-          console.log('Writing file...');
+          console.log('Writing file to : '+path);
           fs.writeFile(path,data, function(error) {
             if(error) {
               console.log(error);
@@ -99,7 +103,12 @@ app.post('/upload', function(req,res) {
                   .on("end", function(progress){
                     console.log('File Write Completed!');
                     // res.send('File Write Completed!<br><a href="/view">Click to View</a>');       
-                    res.redirect('/view');
+                    //res.redirect('/view');
+                    request.post({url:'https://hm-blitz-video-sayanrajguha.c9users.io:8080/api/addVideo', form: {userID:user, duration:'00:00', isVideoSubmitted : true}}, function(err,httpResponse,body){ 
+                      if(err) console.log(err);
+                      console.log(body);
+                      res.json(JSON.parse(body));
+                    });
                   });
             }
           });
@@ -108,19 +117,11 @@ app.post('/upload', function(req,res) {
 
 });
 //routing
-app.get('/index', function(req,res) {
-  res.writeHead(200, {'content-type': 'text/html'});
-  res.end(
-    '<div class="uploadForm">' +
-    '<form action="/upload" enctype="multipart/form-data" method="post">'+
-    // '<input type="text" name="title"><br>'+
-    '<input type="file" name="video"><br>'+
-    '<input type="submit" value="Upload">'+
-    '</form>' +
-    '</div>'
-  );
-});
+// app.get('/', function(req,res) {
+//   res.redirect('/view');
+// });
 
+app.use('/api',api);
 app.use('/view',videoServer);
 
 

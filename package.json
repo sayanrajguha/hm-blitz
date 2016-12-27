@@ -13,9 +13,10 @@
     "ejs": "^2.4.2",
     "express": "~4.13.1",
     "express-session": "^1.13.0",
+    "handbrake-js": "^2.1.0",
     "mongoose": "^4.4.19",
     "multiparty": "^4.1.2",
-    "serve-favicon": "~2.3.0",
-    "handbrake-js": "^2.1.0"
+    "request": "^2.79.0",
+    "serve-favicon": "~2.3.0"
   }
 }

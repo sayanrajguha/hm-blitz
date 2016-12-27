@@ -16,9 +16,11 @@
    <!-- Custom styles for this template -->
    <link href="css/styles.css" rel="stylesheet">
    <link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
-   <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-   <link href="css/styles.css" rel="stylesheet" type="text/css">
+   <link href="./css/font-awesome.css" rel="stylesheet" type="text/css">
+   <link href="./css/styles.css" rel="stylesheet" type="text/css">
    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
   </head>
 
   <body>
@@ -38,8 +40,8 @@
     			<div class="featured-article">
     				<video id="my-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="640" height="264"
                        data-setup="{}">
-                        <source src="view/movie.mp4" type='video/mp4'>
-                        <source src="view/movie.webm" type='video/webm'>
+                        <source src="" id="my-video-mp4" type='video/mp4'>
+                        <!--<source src="view/movie.webm" type='video/webm'>-->
                         <p class="vjs-no-js">
                           To view this video please enable JavaScript, and consider upgrading to a web browser that
                           <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -51,7 +53,7 @@
 					    <p>
 					    <div class="text-right comment-input">
 					        <i class="fa fa-thumbs-up video-button" aria-hidden="true"><span id="likeCnt">0</span></i>
-                            <i class="fa fa-thumbs-down video-button" aria-hidden="true"><span id="unlikeCnt">0</span></i>
+                            <!--<i class="fa fa-thumbs-down video-button" aria-hidden="true"><span id="unlikeCnt">0</span></i>-->
 					    </div>
 					    
                         <div id="form-inline" class="comment-input">
@@ -73,7 +75,7 @@
                                 <li>
                                     <div class="comment-main-level">
                                         <!-- Avatar -->
-                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                                        <div class="comment-avatar"><img src="http://1myc.kpkt.gov.my/backend/assets/images/avatar/default.png" alt=""></div>
 
                                         <div class="comment-box">
                                             <div class="comment-head">
@@ -90,12 +92,12 @@
                                 <li>
                                     <div class="comment-main-level">
                                         <!-- Avatar -->
-                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                                        <div class="comment-avatar"><img src="http://1myc.kpkt.gov.my/backend/assets/images/avatar/default.png" alt=""></div>
                                         
                                         <div class="comment-box">
                                             <div class="comment-head">
                                                 <h6 class="comment-name">Lorena Rojero</h6>
-                                                <span>hace 10 minutes ago</span>
+                                                <span>10 minutes ago</span>
                                             </div>
                                             <div class="comment-content">
                                               Nice one bro!  
@@ -112,7 +114,7 @@
     		<div class="col-md-4 col-lg-4">
     			<ul class="media-list main-list" id="listScroller">
     			  <li class="media">
-    			    <a href="/view" class=".video-list-thumbs-a" title="Title">
+    			    <a href="/view" class=".video-list-thumbs-a" id="loadVideo1" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
             			<span class="glyphicon glyphicon-play-circle"></span>
@@ -124,7 +126,7 @@
     			    </div>
     			  </li>
     			 <li class="media">
-    			    <a href="/view" class=".video-list-thumbs-a" title="Title">
+    			    <a href="/view" class=".video-list-thumbs-a" id="loadVideo2" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
             			<span class="glyphicon glyphicon-play-circle"></span>
@@ -136,7 +138,7 @@
     			    </div>
     			  </li>
     			 <li class="media">
-    			    <a href="/" class=".video-list-thumbs-a" title="Title">
+    			    <a href="/" class=".video-list-thumbs-a" title="Title" id="loadVideo3">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
             			<span class="glyphicon glyphicon-play-circle"></span>
@@ -147,7 +149,19 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
+    			 <li class="media">
+    			    <a href="#" class=".video-list-thumbs-a" title="Title">
+            			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
+            			height="130px" />
+            			<span class="glyphicon glyphicon-play-circle"></span>
+            		</a>
+    			    <div class="media-body">
+    			      <h4 class="media-heading">Video 5</h4>
+    			      <p class="label label-success">3:05</p>
+                      <p class="label label-info pull-right">By Jane Doe</p>
+    			    </div>
+    			  </li>
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -159,7 +173,7 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -171,7 +185,19 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
+    			  <li class="media">
+    			    <a href="#" class=".video-list-thumbs-a" title="Title">
+            			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
+            			height="130px" />
+            			<span class="glyphicon glyphicon-play-circle"></span>
+            		</a>
+    			    <div class="media-body">
+    			      <h4 class="media-heading">Video 3</h4>
+    			      <p class="label label-success">3:05</p>
+                      <p class="label label-info pull-right">By Jane Doe</p>
+    			    </div>
+    			  </li>    			 
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -183,18 +209,7 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
-    			    <a href="#" class=".video-list-thumbs-a" title="Title">
-            			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
-            			height="130px" />
-            			<span class="glyphicon glyphicon-play-circle"></span>
-            		</a>
-    			    <div class="media-body">
-    			      <h4 class="media-heading">Video 3</h4>
-    			      <p class="label label-success">3:05</p>
-                      <p class="label label-info pull-right">By Jane Doe</p>
-    			    </div>
-    			  </li>    			 <li class="media">
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -206,7 +221,7 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -218,7 +233,7 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -230,7 +245,7 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -242,19 +257,7 @@
                       <p class="label label-info pull-right">By Jane Doe</p>
     			    </div>
     			  </li>
-    			      			 <li class="media">
-    			    <a href="#" class=".video-list-thumbs-a" title="Title">
-            			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
-            			height="130px" />
-            			<span class="glyphicon glyphicon-play-circle"></span>
-            		</a>
-    			    <div class="media-body">
-    			      <h4 class="media-heading">Video 3</h4>
-    			      <p class="label label-success">3:05</p>
-                      <p class="label label-info pull-right">By Jane Doe</p>
-    			    </div>
-    			  </li>
-    			      			 <li class="media">
+    			  <li class="media">
     			    <a href="#" class=".video-list-thumbs-a" title="Title">
             			<img src="http://i.ytimg.com/vi/ZKOtE9DOwGE/mqdefault.jpg" alt="Barca" class="img-responsive thumb" 
             			height="130px" />
@@ -276,29 +279,33 @@
         </footer>
     </div>
     <div class="modal fade" id="uploadVideoModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal">&times;</button>
-        <h3 class="modal-title">Upload Video</h3>
-      </div>	<!-- end modal-header -->
-      <div class="modal-body">
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="video" />
-            <p style="text-align: right; margin-top: 20px;">
-                <input type="submit" value="Upload Files" class="btn btn-lg btn-primary" />
-            </p>
-        </form>
-      </div><!--end modal-body-->
-    </div>	<!-- end modal-content -->
-  </div>	<!-- end modal dialog -->
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Upload Video</h3>
+          </div>	<!-- end modal-header -->
+          <div class="modal-body">
+            <form action="/upload" method="post" enctype="multipart/form-data" id="videoUploadForm">
+                <div class="form-group">
+                    <input type="file" name="video" />
+                </div>
+                <p class="rightBtn">
+                    <input type="submit" value="Upload Files" class="btn btn-lg btn-primary" />
+                </p>
+            </form>
+          </div><!--end modal-body-->
+        </div>	<!-- end modal-content -->
+      </div>	<!-- end modal dialog -->
 </div>	<!-- end uploadVideoModal -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/jquery.form.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+    <script src="http://vjs.zencdn.net/5.8.8/video.js"></script> 
+    
+    <script src="./js/script.js"></script>
   </body>
 </html>

@@ -5,9 +5,7 @@ var VideoSchema = new Schema({
     userID : String,
     duration : String,
     isVideoSubmitted : Boolean,
-    likes : [ {
-        userID : String
-    }],
+    likes : [String],
     comments : [{
         userID : String,
         comment : String
@@ -52,12 +50,17 @@ module.exports.removeComment = function(id,callback) {
 }
 
 module.exports.addLike = function(id,userID,callback) {
+    var liked = false;
     Video.getVideo(id, function(err, video) {
        if(err) throw err;
        if(!video) callback(null,false);
        console.log('video of user ' + video.userID + ' found..');
-       if(video.likes.indexOf(userID) != -1) {
+       if(video.likes.indexOf(userID) == -1) {
         video.likes.push(userID);
+        
+       } else {
+        video.likes.splice(video.likes.indexOf(userID), 1);
+        
        }
        video.save(callback);
     });

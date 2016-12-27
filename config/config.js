@@ -1,7 +1,8 @@
 var config = {
   mongoDbUrl : 'mongodb://localhost:27017/blitzVideoDb',
   dataDirectory : 'data',
-  viewDirectory : 'views'
+  viewDirectory : 'views',
+  user : 'sayanraj.guha'
   // defaultPageLimit : 100,
   // pageLimit : 10
 };

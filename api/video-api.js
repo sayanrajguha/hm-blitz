@@ -20,7 +20,7 @@ router.get('/all', function(req,res) {
       } else {
         response = {
         statusCode : 200,
-        list : result
+        data : result
       };    
       }
       res.json(response);
@@ -85,10 +85,34 @@ router.post('/addComment/:id',function(req,res) {
        } else {
            response = {
              statusCode : 200,
-             obj : data
+             data : data
            };
        }
        res.json(response);
    });
 });
+
+router.post('/like/:id',function(req,res) {
+   console.log('like route called..') ;
+   Video.addLike(req.params.id, req.body.userID, function(err, data) {
+      if(err) {
+          console.log(err);
+          response = {
+            statusCode : 400,
+            message : 'Internal Server Error'
+          };
+      } 
+      else {
+           response = {
+             statusCode : 200,
+             data : data
+           };
+       }
+       res.json(response);
+   });
+   
+});
+
+
+
 module.exports = router;

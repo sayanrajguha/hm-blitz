@@ -14,7 +14,7 @@ var api = require('./api/video-api.js');
 var dataDir = config.dataDirectory,
 viewDir = path.join(__dirname, 'views');
 
-var user = 'rishi.khanna'; //logic to extract user name/number
+var user = config.user; //logic to extract user name/number
 
 // view engine setup
 // app.set('views', publicDir);
